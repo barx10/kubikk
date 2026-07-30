@@ -8,7 +8,7 @@ interface ElevationProfileProps {
 export function ElevationProfile({ elevation }: ElevationProfileProps) {
   if (elevation.length === 0) {
     return (
-      <div className="flex h-32 items-center justify-center text-sm text-gray-500">
+      <div className="flex h-32 items-center justify-center text-sm text-slate-500">
         Planlegg en rute for å se høydeprofilen
       </div>
     );
@@ -22,14 +22,22 @@ export function ElevationProfile({ elevation }: ElevationProfileProps) {
         <AreaChart data={data} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
           <defs>
             <linearGradient id="elevationFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#f97316" stopOpacity={0.5} />
-              <stop offset="100%" stopColor="#f97316" stopOpacity={0.05} />
+              <stop offset="0%" stopColor="#f97316" stopOpacity={0.35} />
+              <stop offset="100%" stopColor="#f97316" stopOpacity={0.03} />
             </linearGradient>
           </defs>
-          <XAxis dataKey="km" unit=" km" stroke="#6b7280" fontSize={11} />
-          <YAxis stroke="#6b7280" fontSize={11} unit=" m" width={48} />
+          <XAxis dataKey="km" unit=" km" stroke="#94a3b8" fontSize={11} />
+          <YAxis stroke="#94a3b8" fontSize={11} unit=" m" width={48} />
           <Tooltip
-            contentStyle={{ background: "#1f2937", border: "1px solid #374151", fontSize: 12 }}
+            contentStyle={{
+              background: "#ffffff",
+              border: "1px solid #e2e8f0",
+              borderRadius: 8,
+              fontSize: 12,
+              boxShadow: "0 1px 4px rgba(0,0,0,0.08)",
+            }}
+            labelStyle={{ color: "#1e293b" }}
+            itemStyle={{ color: "#ea580c" }}
             labelFormatter={(km) => `${km} km`}
             formatter={(value: number) => [`${value} moh`, "Høyde"]}
           />
