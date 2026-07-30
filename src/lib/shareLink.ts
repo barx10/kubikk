@@ -1,4 +1,4 @@
-import type { NamedPoint } from "../types/route";
+import type { NamedPoint } from "../types/route.js";
 
 /**
  * "Del rute"-lenke: koder start/slutt/via-punkter + navn som en komprimert

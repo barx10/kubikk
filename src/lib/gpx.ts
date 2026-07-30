@@ -1,4 +1,4 @@
-import type { PlannedRoute } from "../types/route";
+import type { PlannedRoute } from "../types/route.js";
 
 function escapeXml(value: string): string {
   return value

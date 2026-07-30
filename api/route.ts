@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { computeCurvinessScore, pickRecommendedRoute } from "../src/lib/curviness";
-import { haversineKm } from "../src/lib/geo";
-import type { ElevationPoint, RouteCandidate, RouteResult } from "../src/types/route";
+import { computeCurvinessScore, pickRecommendedRoute } from "../src/lib/curviness.js";
+import { haversineKm } from "../src/lib/geo.js";
+import type { ElevationPoint, RouteCandidate, RouteResult } from "../src/types/route.js";
 
 const ORS_URL = "https://api.openrouteservice.org/v2/directions/driving-motorcycle/geojson";
 

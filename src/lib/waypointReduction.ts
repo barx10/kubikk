@@ -1,4 +1,4 @@
-import { angleDiffDeg, bearingDeg, haversineKm } from "./geo";
+import { angleDiffDeg, bearingDeg, haversineKm } from "./geo.js";
 
 /**
  * Google Maps' deep-link-URL tar imot maks ~9-10 punkter totalt (start + slutt +
