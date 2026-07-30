@@ -151,58 +151,72 @@ export default function App() {
   }
 
   return (
-    <div className="flex h-screen flex-col md:flex-row">
-      <aside className="order-2 flex w-full flex-col gap-4 overflow-y-auto border-t border-gray-800 bg-gray-950 p-4 md:order-1 md:h-full md:w-96 md:border-t-0 md:border-r">
-        <h1 className="text-lg font-bold text-orange-400">Kubikk – MC-turplanlegger</h1>
-
-        <HazardBanner />
-
-        <RoutePlanner
-          start={start}
-          end={end}
-          via={via}
-          pickMode={pickMode}
-          onPickModeChange={setPickMode}
-          onRemoveVia={handleRemoveVia}
-          onClear={handleClear}
-          onPlan={() => void handlePlan()}
-          planning={planning}
-          error={planError}
-        />
-
-        {routeResult && routeResult.candidates.length > 1 && (
-          <div className="flex flex-wrap gap-2">
-            {routeResult.candidates.map((c, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => setSelectedIndex(i)}
-                className={`rounded-md px-2 py-1 text-xs ${
-                  i === selectedIndex ? "bg-orange-600 text-white" : "bg-gray-800 text-gray-300"
-                }`}
-              >
-                Alt. {i + 1} · {c.distanceKm.toFixed(0)} km · {c.curvinessScore.toFixed(0)}°/km
-              </button>
-            ))}
+    <div className="flex h-screen flex-col bg-slate-100 md:flex-row">
+      <aside className="order-2 flex w-full flex-col overflow-y-auto border-t border-slate-200 bg-white md:order-1 md:h-full md:w-[26rem] md:border-t-0 md:border-r">
+        <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-slate-100 bg-white/95 px-5 py-4 backdrop-blur">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-orange-500 text-base font-bold text-white shadow-sm">
+            K
           </div>
-        )}
+          <div>
+            <h1 className="text-base font-bold leading-tight text-slate-900">Kubikk</h1>
+            <p className="text-xs text-slate-500">MC-turplanlegger</p>
+          </div>
+        </header>
 
-        <WeatherBadges points={weatherPoints} loading={weatherLoading} />
+        <div className="flex flex-col gap-5 px-5 py-5">
+          <HazardBanner />
 
-        <section>
-          <h2 className="mb-2 text-sm font-semibold text-gray-400">Eksporter / lagre</h2>
-          <ExportMenu route={plannedRoute} onSave={(name) => void handleSave(name)} />
-        </section>
+          <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <RoutePlanner
+              start={start}
+              end={end}
+              via={via}
+              pickMode={pickMode}
+              onPickModeChange={setPickMode}
+              onRemoveVia={handleRemoveVia}
+              onClear={handleClear}
+              onPlan={() => void handlePlan()}
+              planning={planning}
+              error={planError}
+            />
+          </section>
 
-        <section>
-          <h2 className="mb-2 text-sm font-semibold text-gray-400">Lagrede turer</h2>
-          <SavedRoutes onLoad={handleLoadSaved} />
-        </section>
+          {routeResult && routeResult.candidates.length > 1 && (
+            <div className="flex flex-wrap gap-2">
+              {routeResult.candidates.map((c, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setSelectedIndex(i)}
+                  className={`rounded-full px-3 py-1 text-xs font-medium transition ${
+                    i === selectedIndex
+                      ? "bg-orange-500 text-white shadow-sm"
+                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  }`}
+                >
+                  Alt. {i + 1} · {c.distanceKm.toFixed(0)} km · {c.curvinessScore.toFixed(0)}°/km
+                </button>
+              ))}
+            </div>
+          )}
+
+          <WeatherBadges points={weatherPoints} loading={weatherLoading} />
+
+          <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <h2 className="mb-3 text-sm font-semibold text-slate-700">Eksporter / lagre</h2>
+            <ExportMenu route={plannedRoute} onSave={(name) => void handleSave(name)} />
+          </section>
+
+          <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <h2 className="mb-3 text-sm font-semibold text-slate-700">Lagrede turer</h2>
+            <SavedRoutes onLoad={handleLoadSaved} />
+          </section>
+        </div>
       </aside>
 
       <main className="order-1 flex-1 md:order-2">
         <div className="h-64 md:h-2/3 md:min-h-0">
-          <Suspense fallback={<div className="flex h-full items-center justify-center text-sm text-gray-500">Laster kart…</div>}>
+          <Suspense fallback={<div className="flex h-full items-center justify-center bg-slate-100 text-sm text-slate-500">Laster kart…</div>}>
             <RouteMap
               start={start}
               end={end}
@@ -214,7 +228,7 @@ export default function App() {
             />
           </Suspense>
         </div>
-        <div className="h-32 border-t border-gray-800 bg-gray-950 md:h-1/3">
+        <div className="h-32 border-t border-slate-200 bg-white md:h-1/3">
           <Suspense fallback={null}>
             <ElevationProfile elevation={selectedCandidate?.elevation ?? []} />
           </Suspense>

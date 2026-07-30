@@ -13,13 +13,13 @@ export function SavedRoutes({ onLoad }: SavedRoutesProps) {
   const [draftName, setDraftName] = useState("");
 
   if (!routes || routes.length === 0) {
-    return <p className="text-sm text-gray-500">Ingen lagrede turer ennå.</p>;
+    return <p className="text-sm text-slate-500">Ingen lagrede turer ennå.</p>;
   }
 
   return (
-    <ul className="divide-y divide-gray-800">
+    <ul className="divide-y divide-slate-100">
       {routes.map((route) => (
-        <li key={route.id} className="flex items-center justify-between gap-2 py-2">
+        <li key={route.id} className="flex items-center justify-between gap-2 py-2.5">
           {editingId === route.id ? (
             <input
               autoFocus
@@ -32,33 +32,33 @@ export function SavedRoutes({ onLoad }: SavedRoutesProps) {
               onKeyDown={(e) => {
                 if (e.key === "Enter") e.currentTarget.blur();
               }}
-              className="min-w-0 flex-1 rounded bg-gray-800 px-2 py-1 text-sm"
+              className="min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-2 py-1 text-sm text-slate-800 focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400/30"
             />
           ) : (
             <button
               type="button"
               onClick={() => onLoad(route)}
-              className="min-w-0 flex-1 truncate text-left text-sm hover:text-orange-400"
+              className="min-w-0 flex-1 truncate text-left text-sm font-medium text-slate-800 hover:text-orange-600"
               title="Last inn denne ruten"
             >
-              {route.name} <span className="text-gray-500">· {route.distanceKm.toFixed(0)} km</span>
+              {route.name} <span className="font-normal text-slate-400">· {route.distanceKm.toFixed(0)} km</span>
             </button>
           )}
-          <div className="flex shrink-0 gap-2 text-xs text-gray-500">
+          <div className="flex shrink-0 gap-2 text-xs text-slate-400">
             <button
               type="button"
               onClick={() => {
                 setEditingId(route.id);
                 setDraftName(route.name);
               }}
-              className="hover:text-gray-200"
+              className="hover:text-slate-700"
             >
               Endre navn
             </button>
             <button
               type="button"
               onClick={() => void deleteRoute(route.id)}
-              className="hover:text-red-400"
+              className="hover:text-red-500"
             >
               Slett
             </button>

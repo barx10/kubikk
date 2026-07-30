@@ -1,5 +1,5 @@
-import { angleDiffDeg, bearingDeg, totalDistanceKm } from "./geo";
-import type { RouteCandidate } from "../types/route";
+import { angleDiffDeg, bearingDeg, totalDistanceKm } from "./geo.js";
+import type { RouteCandidate } from "../types/route.js";
 
 /**
  * OpenRouteService har ingen "foretrekk svingete vei"-parameter — avoid_features

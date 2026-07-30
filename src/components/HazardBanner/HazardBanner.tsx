@@ -9,7 +9,7 @@ export function HazardBanner() {
       href="https://www.vegvesen.no/trafikk/fjelloverganger/"
       target="_blank"
       rel="noreferrer"
-      className="flex items-center gap-2 rounded-md border border-amber-700/50 bg-amber-950/40 px-3 py-2 text-sm text-amber-200 hover:bg-amber-950/60"
+      className="flex items-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-3 py-2.5 text-sm text-amber-800 transition hover:bg-amber-100"
     >
       <span aria-hidden="true">⚠️</span>
       <span>Sjekk status for fjelloverganger og veimeldinger hos Statens vegvesen</span>

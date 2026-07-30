@@ -1,5 +1,5 @@
 import Dexie, { type EntityTable } from "dexie";
-import type { PlannedRoute } from "../types/route";
+import type { PlannedRoute } from "../types/route.js";
 
 class KubikkDatabase extends Dexie {
   routes!: EntityTable<PlannedRoute, "id">;

@@ -1,4 +1,4 @@
-import type { NamedPoint, RouteResult } from "../types/route";
+import type { NamedPoint, RouteResult } from "../types/route.js";
 
 export interface RouteRequest {
   start: NamedPoint;

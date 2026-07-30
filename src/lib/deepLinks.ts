@@ -1,5 +1,5 @@
-import type { NamedPoint, PlannedRoute } from "../types/route";
-import { reduceToCriticalWaypoints } from "./waypointReduction";
+import type { NamedPoint, PlannedRoute } from "../types/route.js";
+import { reduceToCriticalWaypoints } from "./waypointReduction.js";
 
 function fmt(point: { lat: number; lng: number }): string {
   return `${point.lat.toFixed(6)},${point.lng.toFixed(6)}`;

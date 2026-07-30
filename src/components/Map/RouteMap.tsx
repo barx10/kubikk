@@ -34,7 +34,7 @@ function weatherDivIcon(point: WeatherPoint): L.DivIcon {
   const temp = point.temperatureC !== null ? `${Math.round(point.temperatureC)}°` : "–";
   return L.divIcon({
     className: "",
-    html: `<div style="background:#1f2937;color:#f8fafc;border:1px solid #f97316;border-radius:9999px;padding:2px 8px;font-size:12px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,0.4)">${temp}</div>`,
+    html: `<div style="background:#ffffff;color:#1e293b;border:1px solid #fdba74;border-radius:9999px;padding:2px 8px;font-size:12px;font-weight:600;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,0.15)">${temp}</div>`,
     iconSize: [0, 0],
   });
 }
@@ -47,13 +47,13 @@ export function RouteMap({ start, end, via, pickMode, onPick, routeGeometry, wea
 
   return (
     <div className="relative h-full w-full">
-      <div className="pointer-events-none absolute left-1/2 top-2 z-[1000] -translate-x-1/2 rounded-full bg-gray-900/90 px-3 py-1 text-xs text-gray-200 shadow">
+      <div className="pointer-events-none absolute left-1/2 top-3 z-[1000] -translate-x-1/2 rounded-full border border-slate-200 bg-white/95 px-3 py-1.5 text-xs font-medium text-slate-700 shadow-md">
         {PICK_MODE_LABEL[pickMode]}
       </div>
       <MapContainer center={NORWAY_CENTER} zoom={6} className="h-full w-full">
         <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-bidragsytere'
+          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-bidragsytere &copy; <a href="https://carto.com/attributions">CARTO</a>'
         />
         <ClickHandler onPick={onPick} />
 
@@ -74,7 +74,10 @@ export function RouteMap({ start, end, via, pickMode, onPick, routeGeometry, wea
         )}
 
         {polylinePositions.length > 1 && (
-          <Polyline positions={polylinePositions} pathOptions={{ color: "#f97316", weight: 4 }} />
+          <>
+            <Polyline positions={polylinePositions} pathOptions={{ color: "#ffffff", weight: 7, opacity: 0.9 }} />
+            <Polyline positions={polylinePositions} pathOptions={{ color: "#f97316", weight: 4 }} />
+          </>
         )}
 
         {weatherPoints.map((wp, i) => (
